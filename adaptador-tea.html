@@ -441,9 +441,15 @@ const niveles = {
 };
 
 let nivelActual = 1;
-let apiKey = '';
+let apiKey = localStorage.getItem('tea_api_key') || '';
 let recognition = null;
 let grabando = false;
+
+// Si ya hay clave guardada, saltar el setup
+if (apiKey) {
+  document.getElementById('setup-card').style.display = 'none';
+  document.getElementById('app-card').style.display = 'block';
+}
 
 const SYSTEM_PROMPT = `Sos un asistente especializado en comunicación para personas con Trastorno del Espectro Autista (TEA). Usás siempre español rioplatense.
 
@@ -474,6 +480,7 @@ function guardarClave() {
 
 function cambiarClave() {
   apiKey = '';
+  localStorage.removeItem('tea_api_key');
   document.getElementById('api-key-input').value = '';
   document.getElementById('setup-card').style.display = 'block';
   document.getElementById('app-card').style.display = 'none';
