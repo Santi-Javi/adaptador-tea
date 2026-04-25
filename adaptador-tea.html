@@ -344,7 +344,7 @@
   <div class="card-title">Configuración inicial</div>
   <div class="setup-hint">
     Necesitás tu clave de API de Claude (Anthropic).<br>
-    La encontrás en <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> → API Keys.<br>
+    La encontrás en <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a> → API Keys.<br>
     <strong>Tu clave nunca sale de tu computadora.</strong>
   </div>
   <label class="field-label" for="api-key-input">Clave de API (API Key)</label>
@@ -462,7 +462,7 @@ Respondé únicamente con el mensaje adaptado. Sin explicaciones ni comentarios.
 function guardarClave() {
   const val = document.getElementById('api-key-input').value.trim();
   const err = document.getElementById('error-setup');
-  if (!val.startsWith('sk-ant-')) {
+  if (!val.startsWith('sk-')) {
     err.classList.add('visible');
     return;
   }
@@ -564,10 +564,12 @@ async function adaptar() {
         'anthropic-dangerous-allow-browser': 'true'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1000,
         system: SYSTEM_PROMPT,
-        messages: [{ role: 'user', content: userMsg }]
+        messages: [
+          { role: 'user', content: userMsg }
+        ]
       })
     });
 
