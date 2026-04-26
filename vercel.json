@@ -1,9 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "api/adaptar.js", "use": "@vercel/node" },
-    { "src": "public/**", "use": "@vercel/static" }
-  ],
   "routes": [
     { "src": "/api/adaptar", "dest": "/api/adaptar.js" },
     { "src": "/(.*)", "dest": "/public/$1" }
